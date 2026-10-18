@@ -102,8 +102,6 @@ Streamlit will provide a local URL where you can explore the dashboard.
 The `analysis/` directory contains Jupyter notebooks documenting the exploratory analysis and cleaning stages of the project.
 
 ## Future Improvements
-
-- Deploy the dashboard publicly.
 - Add more historical comparisons and insights.
 - Improve data storytelling with additional visualizations.
 
