@@ -1,3 +1,11 @@
+## Live Demo
+
+Explore the deployed dashboard:
+
+[**Launch Olympics Data Explorer**](https://olympics-data-explorer-dznxkcahqebghbhaiuhmjm.streamlit.app/)
+
+[View Source Code on GitHub](https://github.com/D-sasmita/olympics-data-explorer)
+
 # Olympics Data Explorer
 
 An interactive dashboard for exploring Olympic history, athlete participation, and medal statistics using Python, Pandas, Plotly, and Streamlit.

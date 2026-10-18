@@ -2,7 +2,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-
+from pathlib import Path
 from utils.data_loader import load_data
 
 
@@ -90,19 +90,37 @@ except Exception as exc:
 
 
 # --------------------------------------------------
-# Dashboard header
+# Dashboard header with Olympics logo
 # --------------------------------------------------
-st.title("Olympics Data Explorer")
+PROJECT_ROOT = Path(__file__).resolve().parent
+LOGO_PATH = PROJECT_ROOT / "assets" / "olympics_logo.png"
 
-st.markdown(
-    """
-    <div class="dashboard-subtitle">
-        Explore 120 years of Olympic history through athlete participation,
-        medal records, and country-level performance.
-    </div>
-    """,
-    unsafe_allow_html=True,
+logo_col, title_col = st.columns(
+    [1.25, 4],
+    vertical_alignment="center"
 )
+
+with logo_col:
+    if LOGO_PATH.exists():
+        st.image(str(LOGO_PATH), width=220)
+    else:
+        st.warning(
+            "Olympics logo not found. Add it at "
+            "`assets/olympics_logo.png`."
+        )
+
+with title_col:
+    st.title("Olympics Data Explorer")
+
+    st.markdown(
+        """
+        <div class="dashboard-subtitle">
+            Explore 120 years of Olympic history through athlete participation,
+            medal records, and country-level performance.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 st.divider()
 
