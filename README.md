@@ -24,16 +24,7 @@ End-to-end data project: raw CSV ingestion → cleaning and transformation → p
 
 Built on the **120 Years of Olympic History: Athletes and Results** dataset (athletes, teams, sports, events, editions, medals).
 
-## 📸 Preview
 
-<!-- Add screenshots to /assets and update the paths below -->
-| Dashboard | Medal Analysis |
-|:---:|:---:|
-| ![Dashboard](assets/dashboard.png) | ![Medal Analysis](assets/medal-analysis.png) |
-
-| Country Comparison | Data Explorer |
-|:---:|:---:|
-| ![Country Comparison](assets/country-comparison.png) | ![Data Explorer](assets/data-explorer.png) |
 
 ## ✨ Features
 
