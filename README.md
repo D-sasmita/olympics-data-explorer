@@ -1,48 +1,91 @@
-## Live Demo
+<div align="center">
 
-Explore the deployed dashboard:
+# 🏅 Olympics Data Explorer
 
-[**Launch Olympics Data Explorer**](https://olympics-data-explorer-dznxkcahqebghbhaiuhmjm.streamlit.app/)
+**Interactive analytics dashboard for 120 years of Olympic history (1896–2016)**
 
-[View Source Code on GitHub](https://github.com/D-sasmita/olympics-data-explorer)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![Conda](https://img.shields.io/badge/Conda-44A833?style=for-the-badge&logo=anaconda&logoColor=white)
 
-# Olympics Data Explorer
+[**🚀 Live Demo**](https://olympics-data-explorer-dznxkcahqebghbhaiuhmjm.streamlit.app/) &nbsp;|&nbsp; [**📓 EDA Notebooks**](analysis/) &nbsp;|&nbsp; [**🐞 Report Issue**](https://github.com/D-sasmita/olympics-data-explorer/issues)
 
-An interactive dashboard for exploring Olympic history, athlete participation, and medal statistics using Python, Pandas, Plotly, and Streamlit.
+</div>
 
-## Features
+---
 
-- **Olympics Dashboard:** Explore participation trends, medal distributions, and top-performing regions.
-- **Medal Analysis:** Analyze medal tallies, overall statistics, country-wise performance, and athlete-level results.
-- **Country Comparison:** Compare multiple countries or regions across medal counts and historical trends.
-- **Data Explorer:** Filter Olympic records by athlete, year, season, region, sport, gender, and medal type.
-- **Interactive Visualizations:** Explore historical data through interactive charts and tables.
-- **Data Analysis:** Use Jupyter notebooks to document exploratory data analysis and data cleaning.
+## 📌 Overview
 
-## Tech Stack
+End-to-end data project: raw CSV ingestion → cleaning and transformation → processed dataset → multi-page interactive dashboard.
 
-- Python
-- Pandas and NumPy
-- Streamlit
-- Plotly
-- Jupyter Notebook
+Built on the **120 Years of Olympic History: Athletes and Results** dataset (athletes, teams, sports, events, editions, medals).
 
-## Dataset
+## 📸 Preview
 
-This project uses the **120 Years of Olympic History: Athletes and Results** dataset, covering Olympic athlete events from 1896 to 2016.
+<!-- Add screenshots to /assets and update the paths below -->
+| Dashboard | Medal Analysis |
+|:---:|:---:|
+| ![Dashboard](assets/dashboard.png) | ![Medal Analysis](assets/medal-analysis.png) |
 
-The dataset includes athlete information, participating teams, sports, events, Olympic editions, and medal results.
+| Country Comparison | Data Explorer |
+|:---:|:---:|
+| ![Country Comparison](assets/country-comparison.png) | ![Data Explorer](assets/data-explorer.png) |
 
-## Project Structure
+## ✨ Features
 
-```text
+| Module | Description |
+|---|---|
+| **Olympics Dashboard** | Participation trends, medal distribution, top-performing regions |
+| **Medal Analysis** | Medal tallies, overall statistics, country-wise and athlete-level results |
+| **Country Comparison** | Compare countries/regions across medal counts and historical trends |
+| **Data Explorer** | Filter by athlete, year, season, region, sport, gender, medal type |
+| **EDA Notebooks** | Documented exploratory analysis and data cleaning |
+
+## 🔄 Data Pipeline
+
+```mermaid
+flowchart LR
+    A[Raw CSVs<br/>athlete_events.csv<br/>noc_regions.csv] --> B[Cleaning & Transformation<br/>Jupyter + Pandas]
+    B --> C[Processed Dataset<br/>athlete_events_clean.csv]
+    C --> D[Data Loader<br/>utils/data_loader.py]
+    D --> E[Streamlit Pages<br/>Plotly Visualizations]
+```
+
+| Stage | Location | Purpose |
+|---|---|---|
+| Ingest | `data/raw/` | Source athlete events and NOC region mapping |
+| Transform | `analysis/` | Cleaning, validation, and EDA in notebooks |
+| Store | `data/processed/` | Analysis-ready cleaned dataset |
+| Serve | `utils/data_loader.py` | Single shared loading layer for all pages |
+| Visualize | `app.py`, `pages/` | Interactive multi-page dashboard |
+
+## 🛠️ Tech Stack
+
+| Category | Tools |
+|---|---|
+| Language | Python 3.11 |
+| Data Processing | Pandas, NumPy |
+| Visualization | Plotly |
+| Web App | Streamlit |
+| Analysis | Jupyter Notebook |
+| Environment | Conda, pip |
+| Deployment | Streamlit Community Cloud |
+
+## 📂 Project Structure
+
+```
 olympics-data-explorer/
 ├── analysis/
 │   ├── eda.ipynb
 │   └── olympics_data_analysis.ipynb
+├── assets/                  # screenshots
 ├── data/
-│   ├── raw/
-│   └── processed/
+│   ├── raw/                 # source CSVs (git-ignored)
+│   └── processed/           # cleaned dataset (git-ignored)
 ├── pages/
 │   ├── 1_Medal_Analysis.py
 │   ├── 3_Country_Comparison.py
@@ -54,59 +97,52 @@ olympics-data-explorer/
 └── README.md
 ```
 
-## Installation and Setup
+## ⚙️ Getting Started
 
-### 1. Clone the repository
-
+**1. Clone**
 ```bash
 git clone https://github.com/D-sasmita/olympics-data-explorer.git
 cd olympics-data-explorer
 ```
 
-### 2. Create and activate a Conda environment
-
+**2. Create environment**
 ```bash
 conda create -n olympics python=3.11
 conda activate olympics
 ```
 
-### 3. Install dependencies
-
+**3. Install dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Add the dataset
+**4. Add data**
 
-Download the dataset and place the files in the expected locations:
+Download the dataset and place files at:
 
 - `data/raw/athlete_events.csv`
 - `data/raw/noc_regions.csv`
+- `data/processed/athlete_events_clean.csv` (generate via the notebooks in `analysis/`)
 
-Ensure the cleaned dataset is available at:
+> Raw and processed CSVs are excluded from Git. Obtain or generate them locally before running the app.
 
-- `data/processed/athlete_events_clean.csv`
-
-The raw and processed CSV files are excluded from Git, so you must obtain or generate them locally before running the application.
-
-### 5. Launch the dashboard
-
+**5. Run**
 ```bash
 streamlit run app.py
 ```
 
-Streamlit will provide a local URL where you can explore the dashboard.
+## 🗺️ Roadmap
 
-## Exploratory Data Analysis
+- [ ] Additional historical comparisons and insights
+- [ ] Richer data storytelling visuals
+- [ ] Automated data validation checks on the processed dataset
 
-The `analysis/` directory contains Jupyter notebooks documenting the exploratory analysis and cleaning stages of the project.
-
-## Future Improvements
-- Add more historical comparisons and insights.
-- Improve data storytelling with additional visualizations.
-
-## Author
+## 👩‍💻 Author
 
 **Sasmita Das**
 
-- GitHub: [D-sasmita](https://github.com/D-sasmita)
+[![GitHub](https://img.shields.io/badge/GitHub-D--sasmita-181717?style=flat-square&logo=github)](https://github.com/D-sasmita)
+
+---
+
+<div align="center">⭐ If you found this useful, consider starring the repo.</div>
